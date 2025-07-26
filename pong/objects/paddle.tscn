@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://di7a4wdxrvu3x"]
+
+[ext_resource type="Shape2D" uid="uid://4h72qeknprpr" path="res://paddle.tres" id="1_8nfvt"]
+[ext_resource type="Script" uid="uid://dn8vr0lhpuix" path="res://objects/Paddle.cs" id="1_bs0xr"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_i8ouo"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_6dm6p"]
+
+[node name="Paddle" type="CharacterBody2D"]
+position = Vector2(10, 7)
+script = ExtResource("1_bs0xr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+material = SubResource("CanvasItemMaterial_i8ouo")
+position = Vector2(6, 57)
+shape = ExtResource("1_8nfvt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0.109804, 1, 1)
+position = Vector2(6, 58)
+scale = Vector2(14, 116)
+texture = SubResource("CanvasTexture_6dm6p")

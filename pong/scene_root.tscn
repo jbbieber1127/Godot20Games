@@ -1,0 +1,76 @@
+[gd_scene load_steps=7 format=3 uid="uid://d80lpjkkkmcl"]
+
+[ext_resource type="PackedScene" uid="uid://di7a4wdxrvu3x" path="res://objects/paddle.tscn" id="1_f5bo8"]
+[ext_resource type="PackedScene" uid="uid://b20qrma7osbhb" path="res://objects/ball.tscn" id="2_0i3b6"]
+[ext_resource type="Script" uid="uid://dxlcu4vw30jlc" path="res://objects/Ball.cs" id="3_yqaoc"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4s7c2"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_hxmnb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s7ejb"]
+size = Vector2(1152, 1)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Paddle" parent="." instance=ExtResource("1_f5bo8")]
+UpKeyCode = "ui_up_p2"
+DownKeyCode = "ui_down_p2"
+LeftKeyCode = "ui_left_p2"
+RightKeyCode = "ui_right_p2"
+
+[node name="Paddle3" parent="." instance=ExtResource("1_f5bo8")]
+position = Vector2(1130, 7)
+UpKeyCode = "ui_up"
+DownKeyCode = "ui_down"
+LeftKeyCode = "ui_left"
+RightKeyCode = "ui_right"
+
+[node name="Ball" parent="." instance=ExtResource("2_0i3b6")]
+script = ExtResource("3_yqaoc")
+score1Path = NodePath("../Score1")
+score2Path = NodePath("../Score2")
+
+[node name="Top Wall" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Top Wall"]
+material = SubResource("CanvasItemMaterial_4s7c2")
+position = Vector2(576, 0.5)
+scale = Vector2(1152, 1)
+texture = SubResource("CanvasTexture_hxmnb")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Top Wall"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Top Wall/StaticBody2D"]
+position = Vector2(576, 0.5)
+shape = SubResource("RectangleShape2D_s7ejb")
+
+[node name="Bottom Wall" type="Node2D" parent="."]
+position = Vector2(0, 647)
+
+[node name="Sprite2D" type="Sprite2D" parent="Bottom Wall"]
+material = SubResource("CanvasItemMaterial_4s7c2")
+position = Vector2(576, 0.5)
+scale = Vector2(1152, 1)
+texture = SubResource("CanvasTexture_hxmnb")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Bottom Wall"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bottom Wall/StaticBody2D"]
+position = Vector2(576, 0.5)
+shape = SubResource("RectangleShape2D_s7ejb")
+
+[node name="Score2" type="Label" parent="."]
+offset_left = 1048.0
+offset_top = 25.0
+offset_right = 1088.0
+offset_bottom = 48.0
+text = "0"
+
+[node name="Score1" type="Label" parent="."]
+offset_left = 100.0
+offset_top = 25.0
+offset_right = 110.0
+offset_bottom = 48.0
+scale = Vector2(0.997371, 1.00461)
+text = "0"
