@@ -1,0 +1,103 @@
+[gd_scene load_steps=7 format=3 uid="uid://o3isu1i8426g"]
+
+[ext_resource type="PackedScene" uid="uid://df062mxi3pp66" path="res://objects/Table/table.tscn" id="1_itajj"]
+[ext_resource type="PackedScene" uid="uid://dhuqpao6eec3v" path="res://objects/Paddle/paddle.tscn" id="2_c77vg"]
+
+[sub_resource type="Environment" id="Environment_c77vg"]
+background_mode = 1
+background_color = Color(0.690196, 0.329412, 0.152941, 1)
+background_energy_multiplier = 0.77
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 7.65
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_itajj"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_c77vg"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iqet6"]
+albedo_color = Color(1, 1, 0.258824, 1)
+
+[node name="root_scene" type="Node3D"]
+
+[node name="Game" type="Node" parent="."]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewportContainer2" type="SubViewportContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+stretch = true
+
+[node name="SubViewport2" type="SubViewport" parent="HBoxContainer/SubViewportContainer2"]
+handle_input_locally = false
+size = Vector2i(574, 648)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="HBoxContainer/SubViewportContainer2/SubViewport2"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 20, 5.5, 0)
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="HBoxContainer/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(574, 648)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="HBoxContainer/SubViewportContainer/SubViewport"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -20, 5.5, 0)
+
+[node name="World" type="Node" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="World"]
+environment = SubResource("Environment_c77vg")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.59935, 5.0927, -0.00681925)
+light_color = Color(1, 0.180392, 0.180392, 1)
+light_energy = 2.047
+light_bake_mode = 1
+omni_range = 25.582
+
+[node name="Table" parent="World" instance=ExtResource("1_itajj")]
+
+[node name="Table2" parent="World" instance=ExtResource("1_itajj")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 5.5, -5.5)
+
+[node name="Table3" parent="World" instance=ExtResource("1_itajj")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 5.5, 5.5)
+
+[node name="Table4" parent="World" instance=ExtResource("1_itajj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11, 0)
+
+[node name="Ball" type="RigidBody3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+gravity_scale = 0.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Ball"]
+shape = SubResource("SphereShape3D_itajj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Ball"]
+mesh = SubResource("SphereMesh_c77vg")
+surface_material_override/0 = SubResource("StandardMaterial3D_iqet6")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="World/Ball"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.07956, 0.641145)
+light_energy = 2.196
+
+[node name="Paddle" parent="World" instance=ExtResource("2_c77vg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.5, 5, 0)
+
+[node name="Paddle2" parent="World" instance=ExtResource("2_c77vg")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 9.5, 5, 0)
+UpKeyCode = "ui_up_p2"
+DownKeyCode = "ui_down_p2"
+LeftKeyCode = "ui_left_p2"
+RightKeyCode = "ui_right_p2"
