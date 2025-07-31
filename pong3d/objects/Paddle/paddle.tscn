@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://tms22a5wmkse" path="res://objects/Paddle/Paddle.cs" id="1_o7d5t"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_itajj"]
+size = Vector3(1, 2, 2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o7d5t"]
 transparency = 1
@@ -10,6 +11,7 @@ albedo_color = Color(0, 0.655794, 0.343415, 0.490196)
 
 [sub_resource type="BoxMesh" id="BoxMesh_c77vg"]
 material = SubResource("StandardMaterial3D_o7d5t")
+size = Vector3(1, 2, 2)
 
 [node name="Paddle" type="CharacterBody3D"]
 script = ExtResource("1_o7d5t")
